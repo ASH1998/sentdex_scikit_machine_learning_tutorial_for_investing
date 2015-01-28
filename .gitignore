@@ -1,0 +1,11 @@
+*.zip
+*.pyc
+*.db
+coverage
+venv
+.DS_Store
+__cls.txt
+tm
+config.py
+/testing*
+/intraQuarter
