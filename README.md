@@ -1,7 +1,7 @@
 # sentdex's
 ## scikit machine learning tutorial for investing
 
-> Easy to grab code using git clone
+> Same as in the videos, but as easy to grab code using git clone.
 
 ***
 ***
