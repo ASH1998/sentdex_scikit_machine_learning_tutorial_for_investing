@@ -12,7 +12,7 @@
 ***
 
 > The intraQuarter data zip file is ~255MB, which is too large to store in a github repo (max of 50MB?), so you need to
-download [intraQuarter.zip](http://pythonprogramming.net/downloads/intraQuarter.zip "intraQuarter.zip") file separately.
+download the [intraQuarter.zip](http://pythonprogramming.net/downloads/intraQuarter.zip "intraQuarter.zip") file separately.
 
 ***
 ***
