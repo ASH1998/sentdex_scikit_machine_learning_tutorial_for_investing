@@ -12,7 +12,7 @@
 ***
 
 [download intraQuarter data](http://pythonprogramming.net/downloads/intraQuarter.zip "download intraQuarter data")
-> as this is too large to store in a github repo (limit is 50MB?)
+> The intraQuarter data zip file is ~255MB, which is too large to store in a github repo (limit is 50MB?)
 
 ***
 ***
