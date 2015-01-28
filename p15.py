@@ -45,8 +45,9 @@ FEATURES =  [
 
 def Build_Data_Set():
   data_df = pd.DataFrame.from_csv("key_stats.csv")
-  #data_df = data_df[:100]
 
+  data_df = data_df.reindex(np.random.permutation(data_df.index))
+  
   X = np.array(data_df[FEATURES].values)#.tolist())
 
   y = ( data_df["Status"]
@@ -60,10 +61,10 @@ def Build_Data_Set():
   return X,y
 
 def Analysis():
-  test_size = 20
+  test_size = 1000
   X, y = Build_Data_Set()
   print(len(X))
-
+  
   clf = svm.SVC(kernel="linear", C=1.0)
   clf.fit(X[:-test_size],y[:-test_size])
 
