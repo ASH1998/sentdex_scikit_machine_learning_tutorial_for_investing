@@ -8,7 +8,7 @@
 
 ***
 
-[Scikit-learn Machine Learning with Python and SKlearn YouTube videos](https://www.youtube.com/playlist?list=PLQVvvaa0QuDd0flgGphKCej-9jp-QdzZ3 "Scikit-learn Machine Learning with Python and SKlearn YouTube videos")
+YouTube videos: [Scikit-learn Machine Learning with Python and SKlearn](https://www.youtube.com/playlist?list=PLQVvvaa0QuDd0flgGphKCej-9jp-QdzZ3 "Scikit-learn Machine Learning with Python and SKlearn")
 
 ***
 
