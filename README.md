@@ -17,4 +17,11 @@ YouTube video playlist: [Scikit-learn Machine Learning with Python and SKlearn](
 download the [intraQuarter.zip](http://pythonprogramming.net/downloads/intraQuarter.zip "intraQuarter.zip") file separately.
 
 ***
+
+> Once you have performed a ```git clone``` or a download zip/unzip, you can install all of the python packages by doing:
+```
+pip install -r requirements.txt
+```
+
+***
 ***

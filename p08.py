@@ -30,7 +30,9 @@ def Key_Stats(gather="Total Debt/Equity (mrq)"):
   for each_dir in stock_list[1:25]:
     each_file = os.listdir(each_dir)
     # ticker = each_dir.split("\\")[1] # Windows only
-    ticker = each_dir.split("/")[1]
+    # ticker = each_dir.split("/")[1] # this didn't work so do this:
+    ticker = os.path.basename(os.path.normpath(each_dir))
+    # print(ticker) # uncomment to verify
     ticker_list.append(ticker)
 
     starting_stock_value = False
