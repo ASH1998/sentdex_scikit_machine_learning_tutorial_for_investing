@@ -1,7 +1,8 @@
 # sentdex's
 #### Scikit-Learn tutorials for Machine Learning in Python for Investing
 
-> This is the same code as in the videos, however a github repo makes it easy to grab the code using ```git clone https://github.com/cleesmith/sentdex_scikit_machine_learning_tutorial_for_investing.git```.
+> This is the same code as in the videos, however a github repo makes it easy to grab the code using
+> ```git clone https://github.com/cleesmith/sentdex_scikit_machine_learning_tutorial_for_investing.git```.
 
 ***
 [Scikit-Learn tutorials for Machine Learning in Python for Investing](http://pythonprogramming.net/scikit-learn-tutorials-machine-learning-python-investing/ "Scikit-Learn tutorials for Machine Learning in Python for Investing")
