@@ -45,7 +45,8 @@ FEATURES =  [
 
 def Build_Data_Set():
   data_df = pd.DataFrame.from_csv("key_stats.csv")
-  #data_df = data_df[:100]
+
+  # data_df = data_df[:100]
 
   X = np.array(data_df[FEATURES].values)#.tolist())
 
@@ -60,7 +61,7 @@ def Build_Data_Set():
   return X,y
 
 def Analysis():
-  test_size = 20
+  test_size = 1000
   X, y = Build_Data_Set()
   print(len(X))
 
@@ -73,6 +74,9 @@ def Analysis():
     if clf.predict(X[-x])[0] == y[-x]:
       correct_count += 1
 
-  print("Accuracy:", (correct_count/test_size) * 100.00)
+  print("correct_count=%s"%correct_count)
+  print("test_size=%s"%test_size)
+  # on OS X with 64-bit python 2.7.6 had to add float(), otherwise result was zero:
+  print("Accuracy:", (float(correct_count) / float(test_size)) * 100.00)
 
 Analysis()

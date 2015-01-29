@@ -108,6 +108,7 @@ def Key_Stats(
   )
 
   sp500_df = pd.DataFrame.from_csv("YAHOO-INDEX_GSPC.csv")
+  stock_df = pd.DataFrame.from_csv("stock_prices.csv")
 
   ticker_list = []
 
@@ -120,8 +121,8 @@ def Key_Stats(
     # print(ticker) # uncomment to verify
     ticker_list.append(ticker)
 
-    starting_stock_value = False
-    starting_sp500_value = False
+    # starting_stock_value = False
+    # starting_sp500_value = False
     
     if len(each_file) > 0:
       for file in each_file:
@@ -154,36 +155,46 @@ def Key_Stats(
             row = sp500_df[(sp500_df.index == sp500_date)]
             sp500_value = float(row["Adjusted Close"])
 
+          one_year_later = int(unix_time + 31536000)
+
           try:
-            stock_price = float(source.split('</small><big><b>')[1].split('</b></big>')[0])
+            sp500_1y = datetime.fromtimestamp(one_year_later).strftime('%Y-%m-%d')
+            row = sp500_df[(sp500_df.index == sp500_1y)]
+            sp500_1y_value = float(row["Adjusted Close"])
           except Exception as e:
-            #    <span id="yfs_l10_afl">43.27</span>
             try:
-              stock_price = (source.split('</small><big><b>')[1].split('</b></big>')[0])
-              stock_price = re.search(r'(\d{1,8}\.\d{1,8})',stock_price)
-              stock_price = float(stock_price.group(1))
-              #print(stock_price)
+              sp500_1y = datetime.fromtimestamp(one_year_later - 259200).strftime('%Y-%m-%d')
+              row = sp500_df[(sp500_df.index == sp500_1y)]
+              sp500_1y_value = float(row["Adjusted Close"])
             except Exception as e:
-              try:
-                stock_price = (source.split('<span class="time_rtq_ticker">')[1].split('</span>')[0])
-                stock_price = re.search(r'(\d{1,8}\.\d{1,8})',stock_price)
-                stock_price = float(stock_price.group(1))
-              except Exception as e:
-                print(str(e),'stock_price 3rd try+except',file,ticker)
+              print("S&P 500 1 year later: exception:",str(e))
 
-              #print('Latest:',stock_price)
-              #print('stock price',str(e),ticker,file)
-              #time.sleep(15)
-            
-          #print("stock_price:",stock_price,"ticker:", ticker)
+          try:
+            stock_price_1y = datetime.fromtimestamp(one_year_later).strftime('%Y-%m-%d')
+            row = stock_df[(stock_df.index == stock_price_1y)][ticker.upper()]
+            stock_1y_value = round(float(row),2)
+          except Exception as e:
+            try:
+              stock_price_1y = datetime.fromtimestamp(one_year_later - 259200).strftime('%Y-%m-%d')
+              row = stock_df[(stock_df.index == stock_price_1y)][ticker.upper()]
+              stock_1y_value = round(float(row),2)
+            except Exception as e:
+              print("stock price 1 year later: exception:",str(e))
 
-          if not starting_stock_value:
-            starting_stock_value = stock_price
-          if not starting_sp500_value:
-            starting_sp500_value = sp500_value
+          try:
+            stock_price = datetime.fromtimestamp(unix_time).strftime('%Y-%m-%d')
+            row = stock_df[(stock_df.index == stock_price)][ticker.upper()]
+            stock_price = round(float(row),2)
+          except Exception as e:
+            try:
+              stock_price = datetime.fromtimestamp(unix_time - 259200).strftime('%Y-%m-%d')
+              row = stock_df[(stock_df.index == stock_price)][ticker.upper()]
+              stock_price = round(float(row),2)
+            except Exception as e:
+              print("stock price: exception:",str(e))
 
-          stock_p_change = ((stock_price - starting_stock_value) / starting_stock_value) * 100
-          sp500_p_change = ((sp500_value - starting_sp500_value) / starting_sp500_value) * 100
+          stock_p_change = round((((stock_1y_value - stock_price) / stock_price) * 100), 2)
+          sp500_p_change = round((((sp500_1y_value - sp500_value) / sp500_value) * 100), 2)
 
           difference = stock_p_change - sp500_p_change
 
@@ -192,7 +203,8 @@ def Key_Stats(
           else:
             status = "underperform"
 
-          if value_list.count("N/A") > 0:
+          # if value_list.count("N/A") > 0:
+          if value_list.count("N/A") > 15:
             pass
           else:
             df = df.append(
@@ -247,6 +259,6 @@ def Key_Stats(
         except Exception as e:
           pass
 
-  df.to_csv("key_stats.csv")
+  df.to_csv("key_stats_acc_perf_WITH_NA.csv")
 
 Key_Stats()

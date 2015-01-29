@@ -10,3 +10,6 @@ tm
 config.py
 /testing*
 /intraQuarter
+authtoken.p
+auth*
+quandl_auth_tok.txt

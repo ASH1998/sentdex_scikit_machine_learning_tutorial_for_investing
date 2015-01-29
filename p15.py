@@ -46,6 +46,7 @@ FEATURES =  [
 def Build_Data_Set():
   data_df = pd.DataFrame.from_csv("key_stats.csv")
 
+  # shuffle data:
   data_df = data_df.reindex(np.random.permutation(data_df.index))
   
   X = np.array(data_df[FEATURES].values)#.tolist())
@@ -66,14 +67,25 @@ def Analysis():
   print(len(X))
   
   clf = svm.SVC(kernel="linear", C=1.0)
-  clf.fit(X[:-test_size],y[:-test_size])
+  clf.fit(X[:-test_size],y[:-test_size]) # train data
 
   correct_count = 0
-
   for x in range(1, test_size+1):
     if clf.predict(X[-x])[0] == y[-x]:
       correct_count += 1
 
-  print("Accuracy:", (correct_count/test_size) * 100.00)
+  print("correct_count=%s"%float(correct_count))
+  print("test_size=%s"%float(test_size))
+  # on OS X with 64-bit python 2.7.6 had to add float(), otherwise result was zero:
+  print("Accuracy:", (float(correct_count) / float(test_size)) * 100.00)
+
+# test shuffling data:
+# def Randomizing():
+#   df = pd.DataFrame({"D1":range(5), "D2":range(5)})
+#   print(df)
+#   df2 = df.reindex(np.random.permutation(df.index))
+#   print(df2)
+
+# Randomizing()
 
 Analysis()

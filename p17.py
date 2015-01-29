@@ -3,7 +3,8 @@ import os
 from Quandl import Quandl
 import time
 
-auth_tok = "*your*auth*token*"
+# auth_tok = "your_auth_here"
+auth_tok = open("quandl_auth_tok.txt","r").read()
 
 # path = "X:/Backups/intraQuarter" # for Windows with X files :)
 # if git clone'ed then use relative path,
@@ -15,7 +16,7 @@ def Stock_Prices():
 
   statspath = path+'/_KeyStats'
   stock_list = [x[0] for x in os.walk(statspath)]
-  print(stock_list)
+  # print(stock_list)
 
   for each_dir in stock_list[1:]:
     try:
@@ -25,6 +26,7 @@ def Stock_Prices():
       # print(ticker) # uncomment to verify
 
       name = "WIKI/"+ticker.upper()
+      print(name)
       data = Quandl.get(
         name,
         trim_start = "2000-12-12",
@@ -34,6 +36,7 @@ def Stock_Prices():
       data[ticker.upper()] = data["Adj. Close"]
       df = pd.concat([df, data[ticker.upper()]], axis = 1)
     except Exception as e:
+      # this except is just a simple retry...
       print(str(e))
       time.sleep(10)
       try:
