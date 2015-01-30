@@ -13,3 +13,4 @@ config.py
 authtoken.p
 auth*
 quandl_auth_tok.txt
+/forward
