@@ -21,6 +21,8 @@ download the [intraQuarter.zip](http://pythonprogramming.net/downloads/intraQuar
 > Once you have performed a ```git clone``` or a download zip/unzip, you can install all of the python packages by doing:
 ```
 pip install -r requirements.txt
+... or:
+pip3 install -r requirements.txt
 ```
 
 ***
