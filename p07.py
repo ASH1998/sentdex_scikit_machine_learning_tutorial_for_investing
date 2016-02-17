@@ -14,7 +14,7 @@ def Key_Stats(gather="Total Debt/Equity (mrq)"):
   df = pd.DataFrame(columns = ['Date','Unix','Ticker','DE Ratio','Price','SP500'])
 
   sp500_df = pd.DataFrame.from_csv("YAHOO-INDEX_GSPC.csv")
-
+  # Download Link https://www.quandl.com/data/YAHOO/INDEX_GSPC-S-P-500-Index
   for each_dir in stock_list[1:25]:
     each_file = os.listdir(each_dir)
     # ticker = each_dir.split("\\")[1] # Windows only
@@ -33,11 +33,11 @@ def Key_Stats(gather="Total Debt/Equity (mrq)"):
           try:
             sp500_date = datetime.fromtimestamp(unix_time).strftime('%Y-%m-%d')
             row = sp500_df[(sp500_df.index == sp500_date)]
-            sp500_value = float(row["Adjusted Close"])
+            sp500_value = float(row["Adj Close"])
           except:
             sp500_date = datetime.fromtimestamp(unix_time-259200).strftime('%Y-%m-%d')
             row = sp500_df[(sp500_df.index == sp500_date)]
-            sp500_value = float(row["Adjusted Close"])
+            sp500_value = float(row["Adj Close"])
 
           stock_price = float(source.split('</small><big><b>')[1].split('</b></big>')[0])
           #print("stock_price:",stock_price,"ticker:", ticker)
