@@ -148,11 +148,11 @@ def Key_Stats(
           try:
             sp500_date = datetime.fromtimestamp(unix_time).strftime('%Y-%m-%d')
             row = sp500_df[(sp500_df.index == sp500_date)]
-            sp500_value = float(row["Adjusted Close"])
+            sp500_value = float(row["Adj Close"])
           except:
             sp500_date = datetime.fromtimestamp(unix_time-259200).strftime('%Y-%m-%d')
             row = sp500_df[(sp500_df.index == sp500_date)]
-            sp500_value = float(row["Adjusted Close"])
+            sp500_value = float(row["Adj Close"])
 
           try:
             stock_price = float(source.split('</small><big><b>')[1].split('</b></big>')[0])

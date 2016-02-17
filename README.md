@@ -18,6 +18,14 @@ download the [intraQuarter.zip](http://pythonprogramming.net/downloads/intraQuar
 
 ***
 
+***
+
+S&P 500 Index Data can be downloaded from [YAHOO-INDEX_GSPC](https://www.quandl.com/data/YAHOO/INDEX_GSPC-S-P-500-Index "YAHOO-INDEX_GSPC")
+
+
+***
+
+
 > Once you have performed a ```git clone``` or a download zip/unzip, you can install all of the python packages by doing:
 ```
 pip install -r requirements.txt
